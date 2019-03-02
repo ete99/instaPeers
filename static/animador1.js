@@ -10,3 +10,4 @@ var h = document.querySelector("h1");
 h.addEventListener("click", function(){
     alert("holas");
 });
+alert(1);
