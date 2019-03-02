@@ -1,8 +1,10 @@
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
 
-var width = canvas.width = window.innerWidth;
-var height = canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+var width = canvas.width;
+canvas.height = window.innerHeight
+var height = canvas.height;
 
 // function to generate random number
 
@@ -104,3 +106,18 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
+function drawLine(x0, y0, x1, y1, width=4, color='rgb(173,10,0)'){
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+
+    ctx.beginPath();
+    ctx.moveTo(x0,y0);
+    ctx.lineTo(x1, y1);
+    ctx.stroke();
+}
+function drawCrcl(x, y, size=15, color='rgb(127,255,212)'){
+  ctx.beginPath();
+  ctx.fillStyle = color;
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
+}
