@@ -40,8 +40,8 @@ const init = () => {
     const radius = Math.random() * 20 + 1
     const x = Math.random() * (innerWidth - radius  * 2) + radius
     const y = Math.random() * (innerHeight - radius  * 2) + radius
-    const dx = (Math.random() - 0.5) * 2
-    const dy = (Math.random() - 0.5) * 2
+    const dx = 0//(Math.random() - 0.5) * 2
+    const dy = 0//(Math.random() - 0.5) * 2
 
     circleArray.push(new Circle(x, y, dx, dy, radius))
   }
@@ -80,9 +80,9 @@ const Circle = function(x, y, dx, dy, radius) {
     this.y += this.dy
 
     if (mousex - this.x < distanceFromMouse && mousex - this.x > -distanceFromMouse && mousey - this.y < distanceFromMouse && mousey - this.y > -distanceFromMouse) {
-      if (this.radius < maxRadius) this.radius += 10
+      if (this.radius < maxRadius) this.radius += 1
     } else {
-      if (this.radius > this.minRadius) this.radius -= 10
+      if (this.radius > this.minRadius) this.radius -= 1
     }
 
     this.draw()
