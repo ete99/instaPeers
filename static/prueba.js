@@ -1,12 +1,12 @@
-const canvas = document.querySelector('canvas')
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-const c = canvas.getContext('2d')
+const canv = document.querySelector('canvas')
+canv.width = window.innerWidth
+canv.height = window.innerHeight
+const c = canv.getContext('2d')
 
 let mousex = undefined
 let mousey = undefined
 
-const circlesCount = 800
+const circlesCount = 5
 const maxRadius = 40
 const distanceFromMouse = 100
 const circleArray = []
@@ -28,8 +28,8 @@ const debounce = (func) => {
 }
 
 window.addEventListener('resize', debounce(() => {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canv.width = window.innerWidth
+  canv.height = window.innerHeight
 
   init()
 }))
@@ -64,6 +64,7 @@ const Circle = function(x, y, dx, dy, radius) {
     c.stroke()
     c.fillStyle = this.color
     c.fill()
+
   }
 
   this.update = function() {
@@ -79,9 +80,9 @@ const Circle = function(x, y, dx, dy, radius) {
     this.y += this.dy
 
     if (mousex - this.x < distanceFromMouse && mousex - this.x > -distanceFromMouse && mousey - this.y < distanceFromMouse && mousey - this.y > -distanceFromMouse) {
-      if (this.radius < maxRadius) this.radius += 1
+      if (this.radius < maxRadius) this.radius += 10
     } else {
-      if (this.radius > this.minRadius) this.radius -= 1
+      if (this.radius > this.minRadius) this.radius -= 10
     }
 
     this.draw()
@@ -91,16 +92,29 @@ const Circle = function(x, y, dx, dy, radius) {
 const animate = () => {
   requestAnimationFrame(animate)
   c.clearRect(0, 0, innerWidth, innerHeight)
-
+  let j = 0
   for (let i = 0; i < circleArray.length; i++) {
     circleArray[i].update()
+    j=(i+1)%circlesCount
+    //if(i+1<circleArray.length){
+      drawLine(circleArray[i].x, circleArray[i].y, circleArray[j].x, circleArray[j].y, 2)
+    //}
   }
 }
 
 init()
-animate()
+//animate()
 
 window.addEventListener('mousemove', (e) => {
   mousex = e.x
   mousey = e.y
 })
+function drawLine(x0, y0, x1, y1, width=4, color='rgb(173,10,0)'){
+    ctx.strokeStyle = color
+    ctx.lineWidth = width
+
+    ctx.beginPath()
+    ctx.moveTo(x0,y0)
+    ctx.lineTo(x1, y1)
+    ctx.stroke()
+}
