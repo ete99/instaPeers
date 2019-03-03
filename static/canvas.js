@@ -105,7 +105,7 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
-
+/*
 function drawLine(x0, y0, x1, y1, width=4, color='rgb(173,10,0)'){
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
@@ -120,4 +120,4 @@ function drawCrcl(x, y, size=15, color='rgb(127,255,212)'){
   ctx.fillStyle = color;
   ctx.arc(x, y, size, 0, 2 * Math.PI);
   ctx.fill();
-}
+}*/
