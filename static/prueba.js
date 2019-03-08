@@ -8,7 +8,7 @@ let mousey = undefined
 
 const circlesCount = 300
 const maxRadius = 40
-const distanceFromMouse = 100
+const distanceFromMouse = 20
 const circleArray = []
 const xC = canv.width/2
 const yC = canv.height/2
@@ -39,11 +39,36 @@ window.addEventListener('resize', debounce(() => {
 
 const init = () => {
   circleArray.length = 0
+  let radioActual = 60
+  let cuentaC = 1
   for (let i = 0; i < circlesCount; i++) {
-    const radius = 20       //Math.random() * 20 + 1
-    const angle = i*2*Math.PI/circlesCount
-    const x = xC+rC*Math.cos(angle)   //Math.random() * (innerWidth - radius  * 2) + radius
-    const y = yC+rC*Math.sin(angle)   //Math.random() * (innerHeight - radius  * 2) + radius
+    cuentaC++
+    const radius = 10       //Math.random() * 20 + 1
+    const angle = cuentaC*2*Math.PI/(2*Math.PI*radioActual/40)
+    const x = xC + radioActual*Math.cos(angle)   //Math.random() * (innerWidth - radius  * 2) + radius
+    const y = yC + radioActual*Math.sin(angle)   //Math.random() * (innerHeight - radius  * 2) + radius
+    if((cuentaC)*40 > 2*Math.PI*radioActual){
+        radioActual = radioActual + 30
+        cuentaC = 0
+    }
+
+    /*
+    switch(i%4){
+        case 0:
+            const x = xC+((rC-i*rC/40)%rC)*Math.cos(angle)   //Math.random() * (innerWidth - radius  * 2) + radius
+            const y = yC+((rC-i*rC/40)%rC)*Math.sin(angle)   //Math.random() * (innerHeight - radius  * 2) + radius
+        break;
+        case 0:
+
+        break;
+        case 0:
+
+        break;
+        case 3:
+
+        break;
+    }
+    */
     const dx = 0    //(Math.random() - 0.5) * 2
     const dy = 0    //(Math.random() - 0.5) * 2
 
@@ -106,8 +131,8 @@ const animate = () => {
     ///*
     j=(i+1)%circlesCount
     //if(i+1<circleArray.length){
-      drawLine(circleArray[i].x, circleArray[i].y, circleArray[j].x, circleArray[j].y, 2)
-      drawLine(circleArray[i].x, circleArray[i].y, xC, yC, 0.2)
+      //drawLine(circleArray[i].x, circleArray[i].y, circleArray[j].x, circleArray[j].y, 2)
+      //drawLine(circleArray[i].x, circleArray[i].y, xC, yC, 0.2)
     //}
     //*/
   }

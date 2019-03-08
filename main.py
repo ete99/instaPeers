@@ -20,5 +20,5 @@ def register():
 if __name__ == '__main__':
 
     app.debug = True
-    app.run(host='192.168.0.22', port=8000)
+    app.run( port=8000)
     '''host='192.168.0.13', port=8000'''
